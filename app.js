@@ -1,30 +1,38 @@
-// index.js
-const prompt = require("prompt-sync")();
-const Juego = require("./juego");
-const Mago = require("./models/mago");
-const Guerrero = require("./models/guerrero");
+import promptSync from "prompt-sync";
+import Juego from "./juego.js";
+import Mago from "./models/mago.js";
+import Guerrero from "./models/guerrero.js";
+
+const prompt = promptSync();
 
 console.log("=== Bienvenido al Juego de Aventuras ===");
 
 const tablero = [
-    "normal", "fuego", "roca", "monstruo", "normal",
-    "trampa", "normal", "fuego", "roca", "monstruo",
-    "normal", "trampa", "normal", "fuego", "roca",
-    "monstruo", "normal", "trampa", "normal", "fuego",
-    "roca", "monstruo", "trampa", "normal", "meta"
+  "normal", "fuego", "roca", "monstruo", "normal",
+  "trampa", "normal", "fuego", "roca", "monstruo",
+  "normal", "trampa", "normal", "fuego", "roca",
+  "monstruo", "normal", "trampa", "normal", "fuego",
+  "roca", "monstruo", "trampa", "normal", "meta"
 ];
 
-function crearJugador(num) {
-    const nombre = prompt(`Jugador ${num}, nombre: `);
-    let tipo;
+function crearJugador(numeroDeJugador) {
+  const nombre = prompt(`Jugador ${numeroDeJugador}, ingresa tu nombre: `);
+  
+  if (numeroDeJugador === 1) {
+    let tipoDePersonaje;
     do {
-        tipo = prompt("Elegí tu personaje (Mago/Guerrero): ").toLowerCase();
-    } while (!["mago", "guerrero"].includes(tipo));
-    return tipo === "mago" ? new Mago(nombre) : new Guerrero(nombre);
+      tipoDePersonaje = prompt("Elegí tu personaje (Mago/Guerrero): ").toLowerCase();
+    } while (!["mago", "guerrero"].includes(tipoDePersonaje));
+    
+    return tipoDePersonaje === "mago" ? new Mago(nombre) : new Guerrero(nombre);
+  } else {
+    const jugador1Clase = jugadorUno instanceof Mago ? "mago" : "guerrero";
+    return jugador1Clase === "mago" ? new Guerrero(nombre) : new Mago(nombre);
+  }
 }
 
-const j1 = crearJugador(1);
-const j2 = crearJugador(2);
+const jugadorUno = crearJugador(1);
+const jugadorDos = crearJugador(2);
 
 const juego = new Juego(tablero);
-juego.jugar(j1, j2);
+juego.jugar(jugadorUno, jugadorDos);

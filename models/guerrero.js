@@ -1,9 +1,9 @@
-const Personaje = require("./personaje");
+import Personaje from "./personaje.js";
 
 class Guerrero extends Personaje {
     puedePasar(casilla) {
-        return casilla === "roca"; 
+        return casilla === "roca";
     }
 }
 
-module.exports = Guerrero;
+export default Guerrero;

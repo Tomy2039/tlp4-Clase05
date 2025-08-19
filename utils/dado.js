@@ -1,4 +1,3 @@
-function tirarDado() {
-    return Math.floor(Math.random() * 6) + 1;
+export function tirarDado() {
+  return Math.floor(Math.random() * 6) + 1;
 }
-module.exports = { tirarDado };

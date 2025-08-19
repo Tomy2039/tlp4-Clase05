@@ -1,4 +1,4 @@
-const Personaje = require("./personaje");
+import Personaje from "./personaje.js";
 
 class Mago extends Personaje {
     puedePasar(casilla) {
@@ -6,4 +6,4 @@ class Mago extends Personaje {
     }
 }
 
-module.exports = Mago;
+export default Mago;
